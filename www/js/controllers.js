@@ -28,9 +28,9 @@ angular.module('starter.controllers', [])
 
 })
          
-//.controller('loginCtrl', function($scope) {
+.controller('loginCtrl', function($scope) {
 
-//})
+})
 
 
 /*.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
