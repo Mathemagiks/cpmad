@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter',  ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,15 +32,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+    /*.state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
-  })
+    templateUrl: 'templates/tabsController.html'
+  })*/
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
+  /*.state('tab.dash', {
     url: '/dash',
     views: {
       'tab-dash': {
@@ -77,9 +77,55 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'AccountCtrl'
       }
     }
-  });
+  })*/
+  // added sidemenu routes
+     .state('tabsController.camera', {
+    url: '/camera',
+    views: {
+      'tab1': {
+        templateUrl: 'templates/camera.html',
+        controller: 'cameraCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.gallery', {
+    url: '/gallery',
+    views: {
+      'tab2': {
+        templateUrl: 'templates/gallery.html',
+        controller: 'galleryCtrl'
+      }
+    }
+  })
+
+  .state('tabsController.cloud', {
+    url: '/cloud',
+    views: {
+      'tab3': {
+        templateUrl: 'templates/cloud.html',
+        controller: 'cloudCtrl'
+      }
+    }
+  })
+
+  .state('tabsController', {
+    url: '/tabs',
+    templateUrl: 'templates/tabsController.html',
+    abstract:true
+  })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
+
+  
+
+  ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tabs/camera');
 
 });
