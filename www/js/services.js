@@ -1,6 +1,6 @@
-angular.module('starter.services', [])
+/*angular.module('starter.services', [])
 
-/*.factory('Chats', function() {
+.factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
@@ -51,11 +51,24 @@ angular.module('starter.services', [])
 
 angular.module('starter.services', [])
 
-.factory('BlankFactory', [function(){
+.factory('Camera', ['$q', function($q) {
+ 
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+      
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+      
+      return q.promise;
+    }
+  }
 
-}])
-
-.service('BlankService', [function(){
+//.service('BlankService', [function(){
 
 }]);
 
