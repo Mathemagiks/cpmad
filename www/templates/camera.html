@@ -17,7 +17,35 @@
 </ion-view>-->
 <ion-view title="Camera" ng-controller="cameraCtrl" id="page2">
     <ion-content padding="true" scroll="false" class="has-header has-footer">
-        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
+
+
+
+
+    <button class="button button-full button-assertive" ng-click="takePhoto()">
+            Take Photo
+        </button>
+        <button class="button button-full button-assertive" ng-click="choosePhoto()">
+            Choose Photo
+        </button>
+        <center>
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center"></center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; background-color: rgb(255, 255, 255);">
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         </div>
         <div class="spacer" style="width: 300px; height: 41px;"></div>
@@ -25,6 +53,7 @@
             <button ng-click="getPhoto()" id="camera-button9" class="button button-light  button-block icon ion-camera"></button>
             <button id="camera-button10" class="button button-light  button-block icon ion-ios-download"></button>
             <button id="camera-button11" class="button button-light  button-block icon ion-android-delete"></button>
-        </div>
+        </div> -->
     </ion-content>
+
 </ion-view>
