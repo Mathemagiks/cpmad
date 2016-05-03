@@ -15,12 +15,25 @@
   </ion-content>
 </ion-view>-->
 <ion-view title="Gallery" id="page3">
-    <ion-content padding="true" class="has-header has-footer">
-        <form class="list">
-            <label class="item item-input" name="Search Gallery">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Search">
-            </label>
-        </form>
+    <ion-content ng-controller="galleryCtrl" padding="true" class="has-header has-footer">
+    <!-- <centre><img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center"></center> -->
+     <ion-card ng-repeat="pic in pics">
+        
+        <img src="{{pic.img}}"/>
+        
+        <ion-card-content>
+          
+          <ion-card-title>
+            {{pic.title}}
+          </ion-card-title>
+          
+          <!-- <button ng-show="">Click to add description</button> -->
+          <p>
+            {{pic.description}}
+          </p>
+
+        </ion-card-content>
+
+
     </ion-content>
 </ion-view>

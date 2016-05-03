@@ -16,7 +16,14 @@ angular.module('starter.controllers', [])
     Chats.remove(chat);
   };
 })*/
-.controller('cameraCtrl', function($scope, $cordovaCamera) {
+.controller('cameraCtrl', function($scope, $cordovaCamera, Pics) {
+  $scope.pics = Pics.all();
+  var id = 0;
+  var title;
+  var test;
+  var img;
+  var photoObj;
+  var newObj;
 
  $scope.takePhoto = function () {
       var options = {
@@ -27,38 +34,37 @@ angular.module('starter.controllers', [])
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 300,
         targetHeight: 300,
-        //popoverOptions: CameraPopoverOptions,
+        popoverOptions: CameraPopoverOptions,
         saveToPhotoAlbum: true
     };
 
         $cordovaCamera.getPicture(options).then(function (imageData) {
+
+            // Set filepath in scope for image taken
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
+
+            // increment app gallery counter
+            id++;
+
+            // create a new object pic object and push onto pics array for use by entire application (services.js)
+            newObj = {id: null, title: '', description: '', img: ''};
+            $scope.pics.push(newObj);
+
+            /* Since the id value set by this function increments by one, it should meaningfully represent the 
+              index of each new object in the pics array - as such it is used to identify the pics object in 
+              the array, and to set the id property of the given new pics object
+              */
+            $scope.pics[id].id = id; 
+
+            // Update the new pics object with the new image URI
+            $scope.pics[id].img = $scope.imgURI;
+
+
         }, function (err) {
             // An error occured. Show a message to the user
         });
     }
     
-    $scope.choosePhoto = function () {
-      var options = {
-        quality: 75,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
-        //popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: true
-    };
-
-        $cordovaCamera.getPicture(options).then(function (imageData) {
-            $scope.imgURI = "data:image/jpeg;base64," + imageData;
-        }, function (err) {
-            // An error occured. Show a message to the user
-        });
-    }
-
-
 })
   
  // $scope.getPhoto = function() {
@@ -74,9 +80,53 @@ angular.module('starter.controllers', [])
  //      saveToPhotoAlbum: true
  //    });
  //  };
-.controller('galleryCtrl', function($scope) {
+/*.controller('galleryCtrl', function($scope, $cordovaCamera, $cordovaFile) {
+   $scope.fileName = "";
+  $scope.uploadPicture = function() {
+    var options = {
+      quality: 50,
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 1024,
+      targetHeight: 768,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: true,
+      correctOrientation: true
+    };
 
+    $cordovaCamera.getPicture(options).then(function(sourcePath) {
+      var sourceDirectory = sourcePath.substring(0, sourcePath.lastIndexOf('/') + 1);
+      var sourceFileName = sourcePath.substring(sourcePath.lastIndexOf('/') + 1, sourcePath.length);
+
+      console.log("Copying from : " + sourceDirectory + sourceFileName);
+      console.log("Copying to : " + cordova.file.dataDirectory + sourceFileName);
+      $cordovaFile.copyFile(sourceDirectory, sourceFileName, cordova.file.dataDirectory, sourceFileName).then(function(success) {
+         $scope.fileName = cordova.file.dataDirectory + sourceFileName;
+      }, function(error) {
+         console.dir(error);
+      });
+
+    }, function(err) {
+         console.log(err);
+    });
+  }
+})*/
+.controller("galleryCtrl", function($scope, $cordovaCamera,$cordovaFile,$cordovaImagePicker, Pics){
+  console.log('gallery ctrl run');
+
+  // Add elements of Pics service to $scope
+  $scope.pics = Pics.all();
+
+  // console.log($scope.pics[0].title);
+  
+    
 })
+
+
+
+
    
 .controller('cloudCtrl', function($scope) {
 
