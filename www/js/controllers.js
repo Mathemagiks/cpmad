@@ -46,8 +46,8 @@ angular.module('starter.controllers', [])
             // increment app gallery counter
             id++;
 
-            // create a new object pic object and push onto pics array for use by entire application (services.js)
-            newObj = {id: null, title: '', description: '', img: ''};
+            // create a new pic object and push onto pics array for use by entire application (see pics array in services.js)
+            newObj = {id: null, title: null, description: null, img: null};
             $scope.pics.push(newObj);
 
             /* Since the id value set by this function increments by one, it should meaningfully represent the 
@@ -119,7 +119,11 @@ angular.module('starter.controllers', [])
   // Add elements of Pics service to $scope
   $scope.pics = Pics.all();
 
-  // console.log($scope.pics[0].title);
+  $scope.addPicDescription = function(pic, textArea)
+  {
+    pic.description = textArea;
+  };
+
   
     
 })

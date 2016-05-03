@@ -16,7 +16,7 @@
 </ion-view>-->
 <ion-view title="Gallery" id="page3">
     <ion-content ng-controller="galleryCtrl" padding="true" class="has-header has-footer">
-    <!-- <centre><img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center"></center> -->
+    <!-- <centre><img ng-show="imgURI !== undefined && imgURI !== '' " ng-src="{{imgURI}}" style="text-align: center"></center> -->
      <ion-card ng-repeat="pic in pics">
         
         <img src="{{pic.img}}"/>
@@ -26,11 +26,10 @@
           <ion-card-title>
             {{pic.title}}
           </ion-card-title>
+          <textarea name="textArea" placeholder="Description goes here" rows="" cols="" ng-model="textArea">{{pic.description}}</textarea>
+          <button ng-show="pic.description == null" ng-click="addPicDescription(pic, textArea)">Click to add description</button>
+            
           
-          <!-- <button ng-show="">Click to add description</button> -->
-          <p>
-            {{pic.description}}
-          </p>
 
         </ion-card-content>
 
