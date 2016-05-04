@@ -5,12 +5,12 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
 
   var pics = [
-    {
-      id: 0, 
-      title: 'test',
-      description: 'This is a test card',
-      img: ''
-    }
+    // {
+    //   id: 0, 
+    //   title: 'test',
+    //   description: 'This is a test card',
+    //   img: ''
+    // }
   ];
 
   return {

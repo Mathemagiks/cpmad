@@ -24,10 +24,20 @@
         <ion-card-content>
           
           <ion-card-title>
-            {{pic.title}}
+          <textarea name="textArea1" placeholder="Title goes here" rows="" cols="" ng-model="textArea">{{pic.title}}</textarea>
+
+          <button clear danger small class="disable-hover button button-clear button-small button-icon-left button-clear-danger" ng-click="addTitle(pic, textArea1)">
+            <span class="button-inner" ng-click"addTitle(pic, textArea1)">
+              <ion-icon name="edit" role="img" class="ion-edit" aria-lable="edit"></ion-icon>
+              Edit Title
+            </span>
+            <ion-button-effect></ion-button-effect>
+          </button>
+            
+
           </ion-card-title>
           <textarea name="textArea" placeholder="Description goes here" rows="" cols="" ng-model="textArea">{{pic.description}}</textarea>
-          <button ng-show="pic.description == null" ng-click="addPicDescription(pic, textArea)">Click to add description</button>
+          <button class="button button-full button-royal" ng-show="pic.description == null" ng-click="addPicDescription(pic, textArea)">Click to add description</button>
             
           
 

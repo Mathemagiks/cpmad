@@ -8,5 +8,16 @@
   </ion-content>
 </ion-view>-->
 <ion-view title="Cloud " id="page4">
-    <ion-content padding="true" class="has-header has-footer"></ion-content>
+    <ion-content padding="true" class="has-header has-footer">
+     <form class="list">
+            <label class="item item-input" name="Search Gallery">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" placeholder="Search for Images">
+            </label>
+        </form>
+        <button ng-click="sendEmail()" class="button button-icon icon ion-email">
+			Send mail
+		</button>
+
+    </ion-content>
 </ion-view>

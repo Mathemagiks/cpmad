@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
         quality: 75,
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
+        allowEdit: false,
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 300,
         targetHeight: 300,
@@ -42,9 +42,10 @@ angular.module('starter.controllers', [])
 
             // Set filepath in scope for image taken
             $scope.imgURI = "data:image/jpeg;base64," + imageData;
+            console.log(imageData);
+            console.log($scope.imgURI);
 
-            // increment app gallery counter
-            id++;
+            
 
             // create a new pic object and push onto pics array for use by entire application (see pics array in services.js)
             newObj = {id: null, title: null, description: null, img: null};
@@ -58,6 +59,10 @@ angular.module('starter.controllers', [])
 
             // Update the new pics object with the new image URI
             $scope.pics[id].img = $scope.imgURI;
+
+            // increment app gallery counter
+            id++;
+            
 
 
         }, function (err) {
@@ -118,6 +123,7 @@ angular.module('starter.controllers', [])
 
   // Add elements of Pics service to $scope
   $scope.pics = Pics.all();
+  console.log($scope.pics[0].img);
 
   $scope.addPicDescription = function(pic, textArea)
   {
@@ -132,7 +138,43 @@ angular.module('starter.controllers', [])
 
 
    
-.controller('cloudCtrl', function($scope) {
+.controller('cloudCtrl', function($scope,$cordovaCamera,$cordovaFile,$cordovaImagePicker, Pics) {
+  $scope.composeEmail = {};
+  $scope.pics = Pics.all();
+  //
+  var recipient;
+
+  document.addEventListener('deviceready', function () {
+    
+    $scope.sendEmail = function(){
+    var bodyText = "<h2> Check this out!</h2>";
+    if (null != $scope.pics){
+      var pix =[];
+      for ( var i = 0; i < $scope.pics.length; i++){
+        console.log("cloudCtrl/sendEmail for loop: "+$scope.pics[i].img);
+        pix.push("" + $scope.pics[i].img);
+        pix[i] = pix[i].replace('data:image/jpeg;base64,', 'base64:icon'+i+".jpg//");
+
+      }
+
+      window.plugin.email.open({
+        to: ["shades.mond@gmail.com"],
+        attachments: pix,
+        subject: "new pics",
+        body: bodyText,
+        isHtml: true,
+      }, function(){
+        console.log("email view dismissed");
+      },
+      this);
+
+    }
+
+  }
+
+}, false);
+
+  
 
 })
          
