@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+     <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; img-src 'self' data:;  style-src  'self' 'unsafe-inline' * "/>
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -19,7 +18,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="js/ng-cordova.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
     <style type="text/css">
 
@@ -56,10 +55,10 @@
                 <div class="title">Menu</div>
             </ion-header-bar>
             <ion-content padding="true" class="side-menu-left has-header">
-                <a ui-sref="login" menu-close="" id="menu-button5" class="button button-light  button-block icon ion-log-in" data-componentid="button5">Login</a>
-                <a ui-sref="tabsController.camera" menu-close="" id="menu-button6" class="button button-light  button-block" data-componentid="button6">Camera</a>
-                <a ui-sref="tabsController.gallery" menu-close="" id="menu-button7" class="button button-light  button-block" data-componentid="button7">Gallery</a>
-                <a ui-sref="tabsController.cloud" menu-close="" id="menu-button8" class="button button-light  button-block" data-componentid="button8">Cloud</a>
+                <a ui-sref="login" menu-toggle="" id="menu-button5" class="button button-light  button-block icon ion-log-in" data-componentid="button5">Login</a>
+                <a ui-sref="tabs.camera" menu-toggle="" id="menu-button6" class="button button-light  button-block" data-componentid="button6">Camera</a>
+                <a ui-sref="tabs.gallery" menu-toggle="" id="menu-button7" class="button button-light  button-block" data-componentid="button7">Gallery</a>
+                <a ui-sref="tabs.cloud" menu-toggle="" id="menu-button8" class="button button-light  button-block" data-componentid="button8">Cloud</a>
             </ion-content>
         </ion-side-menu>
     </ion-side-menus>

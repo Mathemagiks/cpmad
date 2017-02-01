@@ -1,11 +1,4 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter',  ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,107 +18,56 @@ angular.module('starter',  ['ionic', 'starter.controllers', 'starter.services', 
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-    /*.state('tab', {
-    url: '/tab',
-    abstract: true,
-    templateUrl: 'templates/tabsController.html'
-  })*/
-
-  // Each tab has its own nav history stack:
-
-  /*.state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
-      }
-    }
-  })
-
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  })*/
-  // added sidemenu routes
-     .state('tabsController.camera', {
-    url: '/camera',
-    views: {
-      'tab1': {
-        templateUrl: 'templates/camera.html',
-        controller: 'cameraCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.gallery', {
-    url: '/gallery',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/gallery.html',
-        controller: 'galleryCtrl'
-      }
-    }
-  })
-
-  .state('tabsController.cloud', {
-    url: '/cloud',
-    views: {
-      'tab3': {
-        templateUrl: 'templates/cloud.html',
-        controller: 'cloudCtrl'
-      }
-    }
-  })
-
-  .state('tabsController', {
+  // Define a parent state for the tabs
+  .state('tabs', {
     url: '/tabs',
-    templateUrl: 'templates/tabsController.html',
+    templateUrl: 'templates/tabs.html',
     abstract:true
   })
 
+  // Define a child state for the gallery tab
+  .state('tabs.gallery', {
+    url: '/gallery',
+    views: {
+      'gallery': {
+        templateUrl: 'templates/gallery.html',
+        controller: 'GalleryCtrl'
+      }
+    }
+  })
+
+  // Define a child state for the snap-it tab
+  .state('tabs.camera', {
+    url: '/camera',
+    views: {
+      'camera': {
+        templateUrl: 'templates/camera.html',
+        controller: 'CameraCtrl'
+      }
+    }
+  })
+
+  // Define a child state for the cloud tab
+  .state('tabs.cloud', {
+    url: '/cloud',
+    views: {
+      'cloud': {
+        templateUrl: 'templates/cloud.html',
+        controller: 'CloudCtrl'
+      }
+    }
+  })
+
+  // Define a state for the login
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
+    controller: 'LoginCtrl'
   })
 
-  
-
-  ;
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tabs/camera');
+// urlRouterProvider provides a default route to the gallery view
+$urlRouterProvider.otherwise('/tabs/gallery')
 
 });

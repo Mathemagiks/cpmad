@@ -1,48 +1,24 @@
-<!--<ion-view view-title="Chats">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-view>-->
-<ion-view title="Gallery" id="page3">
-    <ion-content ng-controller="galleryCtrl" padding="true" class="has-header has-footer">
-    <!-- <centre><img ng-show="imgURI !== undefined && imgURI !== '' " ng-src="{{imgURI}}" style="text-align: center"></center> -->
-     <ion-card ng-repeat="pic in pics">
-        
-        <img src="{{pic.img}}"/>
-        
+<ion-view title="Gallery" id="gallery">
+    <ion-content padding="true" class="has-header has-footer">
+     <button class="button button-dark button-block" ng-click="addMedia()">
+        Add image
+      </button>
+      <br><br>
+      <ion-card ng-repeat="image in images">
+      <img ng-src="data:image/jpeg;base64,{{image}}"/>
         <ion-card-content>
-          
           <ion-card-title>
-          <textarea name="textArea1" placeholder="Title goes here" rows="" cols="" ng-model="textArea">{{pic.title}}</textarea>
-
-          <button clear danger small class="disable-hover button button-clear button-small button-icon-left button-clear-danger" ng-click="addTitle(pic, textArea1)">
-            <span class="button-inner" ng-click"addTitle(pic, textArea1)">
-              <ion-icon name="edit" role="img" class="ion-edit" aria-lable="edit"></ion-icon>
-              Edit Title
-            </span>
-            <ion-button-effect></ion-button-effect>
-          </button>
-            
-
-          </ion-card-title>
-          <textarea name="textArea" placeholder="Description goes here" rows="" cols="" ng-model="textArea">{{pic.description}}</textarea>
-          <button class="button button-full button-royal" ng-show="pic.description == null" ng-click="addPicDescription(pic, textArea)">Click to add description</button>
-            
-          
-
+            Test Card Title
+            </ion-card-title>
+          <p>
+            This is a test card description.
+          </p>
         </ion-card-content>
-
-
-    </ion-content>
+    </ion-card>
+    <div class="button-bar">
+            <button id="camera-button9" class="button button-light  button-block icon ion-camera"></button>
+            <button id="camera-button10" class="button button-light  button-block icon ion-ios-download"></button>
+            <button id="camera-button11" class="button button-light  button-block icon ion-android-delete"></button>
+        </div>
+  </ion-content>
 </ion-view>
